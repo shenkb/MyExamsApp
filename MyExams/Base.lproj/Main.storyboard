@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="BkU-5Q-lWY" detailTextLabel="H7e-Fx-nHb" style="IBUITableViewCellStyleSubtitle" id="n4Y-iW-Hyo">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="BkU-5Q-lWY" detailTextLabel="H7e-Fx-nHb" style="IBUITableViewCellStyleSubtitle" id="n4Y-iW-Hyo">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="n4Y-iW-Hyo" id="4FX-BF-i5T">
@@ -46,6 +46,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="0PN-ed-XQU" kind="show" identifier="ToEdit" id="KmK-81-rSl"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -54,14 +57,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Exam" id="RQR-6Q-zc0">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="AQ3-XM-y4C">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="AQ3-XM-y4C">
                             <connections>
-                                <action selector="editBarButtonPresse:" destination="BYZ-38-t0r" id="xYF-ZZ-9BL"/>
+                                <action selector="editBarButtonPressed:" destination="BYZ-38-t0r" id="xYF-ZZ-9BL"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cvL-sf-ZBl">
                             <connections>
-                                <segue destination="IQR-JD-WLK" kind="show" identifier="ToAdd" id="a4M-2h-phZ"/>
+                                <segue destination="IQR-JD-WLK" kind="presentation" identifier="ToAdd" id="ySW-mn-MmO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -146,7 +149,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EX-cx-P9n">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1EX-cx-P9n">
                                 <rect key="frame" x="16" y="269" width="343" height="280"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,13 +161,29 @@
                         <viewLayoutGuide key="safeArea" id="Xmf-Vi-rto"/>
                     </view>
                     <navigationItem key="navigationItem" id="3ZF-Ry-o3i">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lGv-Fn-ZIb"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="T2H-Br-hrO"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lGv-Fn-ZIb">
+                            <connections>
+                                <action selector="cancelBarButtonPressed:" destination="0PN-ed-XQU" id="TIp-UL-VOJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="T2H-Br-hrO">
+                            <connections>
+                                <segue destination="9WR-ju-Num" kind="unwind" unwindAction="unwindFromDetailWithSender:" id="WNn-6d-Wms"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="courseNameTextField" destination="ABD-j6-32r" id="WlE-xe-K4H"/>
+                        <outlet property="dateTextField" destination="IQ8-e1-NAs" id="k6C-qO-aj5"/>
+                        <outlet property="locationTextField" destination="DYt-JD-GW7" id="SrX-fM-ax1"/>
+                        <outlet property="notesTextView" destination="1EX-cx-P9n" id="b4c-cn-blv"/>
+                        <outlet property="timeTextField" destination="BIu-p3-G51" id="k9h-uA-3gO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o9P-6q-MGC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9WR-ju-Num" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1772" y="33.733133433283363"/>
+            <point key="canvasLocation" x="1794" y="56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1B0-b6-bgF">
@@ -182,7 +201,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUp-Tp-6KL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-454" y="34"/>
+            <point key="canvasLocation" x="-542" y="34"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fZw-Nz-SXX">
@@ -203,4 +222,7 @@
             <point key="canvasLocation" x="1018" y="807"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="KmK-81-rSl"/>
+    </inferredMetricsTieBreakers>
 </document>
